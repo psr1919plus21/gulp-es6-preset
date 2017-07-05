@@ -6,6 +6,7 @@ var babelify = require('babelify');
 var source = require("vinyl-source-stream");
 var glob = require('glob');
 var es = require('event-stream');
+var imagemin = require('gulp-imagemin');
 
 gulp.task('sass', function () {
   return gulp.src('./src/**/*.scss')
@@ -40,6 +41,16 @@ gulp.task('js', function(done) {
 
 gulp.task('js:watch', function() {
   gulp.watch('./src/app/**/*.js', ['js']);
+});
+
+gulp.task('img', function() {
+  gulp.src('src/static/img/*')
+    .pipe(imagemin([
+        imagemin.gifsicle({interlaced: true}),
+        imagemin.jpegtran({progressive: true}),
+        imagemin.optipng({optimizationLevel: 5})
+    ]))
+    .pipe(gulp.dest('./build/img'));
 });
 
 gulp.task('default', ['sass', 'js']);
