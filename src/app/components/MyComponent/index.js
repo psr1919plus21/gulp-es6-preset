@@ -15,3 +15,4 @@ export default class MyClass {
     return this._foo;
   }
 }
+console.log($);

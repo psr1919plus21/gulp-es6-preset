@@ -53,4 +53,4 @@ gulp.task('img', function() {
     .pipe(gulp.dest('./build/img'));
 });
 
-gulp.task('default', ['sass', 'js']);
+gulp.task('default', ['sass', 'js', 'img']);
